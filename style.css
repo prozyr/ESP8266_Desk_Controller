@@ -1,0 +1,482 @@
+/*===== GOOGLE FONTS =====*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/*===== VARIABLES CSS =====*/
+:root {
+  --header-height: 3vh;
+
+  /*========== Colors ==========*/
+  --title-color: #0B0A0A;
+  --text-color: #403A3A;
+  --text-color-light: #888888;
+  --container-color: #ce2828;
+  --container-color-alt: #ffb7b7de;
+  --body-color: #ff8484cb;
+  --chart-color: rgba(255, 199, 199, 0.801);
+
+  /*========== Font and typography ==========*/
+  --body-font: 'Poppins', sans-serif;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: .938rem;
+  --small-font-size: .875rem;
+  --smaller-font-size: .813rem;
+
+  /*========== Font weight ==========*/
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /*========== Margenes ==========*/
+  --mb-1: .5rem;
+  --mb-2: 1rem;
+  --mb-3: 1.5rem;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*========== BASE ==========*/
+
+*,::before,::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+/*========== Variables Dark theme ==========*/
+
+body.dark-theme {
+  --title-color: #f2f2f2;
+  --text-color: #bfbfbf;
+  --container-color: #212121;
+  --container-color-alt: #181616;
+  --body-color: #2b2b2b;
+  --chart-color: #ffffff;
+}
+
+/*========== Button Dark/Light ==========*/
+
+.change-theme{
+  position: absolute;
+  right: 0;
+  top:2.2rem;
+  display: flex;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.change-theme:hover{
+  color: var(--title-color);
+}
+
+body {
+  margin: 0 0 var(--header-height) 0;
+  padding: 0;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+  color: var(--text-color);
+}
+
+h1,h2,h3,ul,p{
+  margin: 0;
+}
+
+h1,h2,h3{
+  color: var(--title-color);
+  font-weight: var(--font-medium);
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/*========== CLASS CSS ==========*/
+
+.section {
+  padding: 1.5rem 0;
+}
+
+.section-title{
+  font-size: var(--h2-font-size);
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+  text-transform: uppercase;
+  letter-spacing: .35rem;
+  text-align: center;
+  margin-bottom: var(--mb-3);
+}
+
+/*========== LAYOUT ==========*/
+
+.bd-container {
+  max-width: 100vh;
+  width: calc(100% - 3rem);
+  margin: auto;
+}
+
+.bd-grid{
+  display: grid;
+  gap: 1.5rem;
+}
+
+.l-header{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: var(--z-fixed);
+  background-color: var(--body-color);
+  box-shadow: 0 -1px 4px rgba(0,0,0,.1);
+  transition: .3s;
+}
+
+/*========== NAV ==========*/
+
+.nav {
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media screen and (max-width: 12000px){
+  .nav_menu {
+    position: fixed;
+    bottom: -150%;
+    left: 0;
+    width: 100%;
+    padding: 2rem 1.5rem;
+    background-color: var(--body-color);
+    box-shadow: 0 1px 4px rgba(0,0,0,.1);
+    border-radius: 1rem 1rem 0 0;
+    z-index: var(--z-fixed);
+    transition: .3s;
+  }
+
+  #resume-button{
+    visibility: hidden;
+  }
+}
+
+.nav_logo,.nav_toggle{
+  color: var(--title-color);
+  font-weight: var(--font-medium);
+}
+
+.nav_toggle{
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.nav_item{
+  text-align: center;
+}
+
+.nav_list{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.nav_link{
+  display: flex;
+  flex-direction: column;
+  font-size: var(--small-font-size);
+  color: var(--text-color-light);
+  font-weight: var(--text-medium);
+}
+
+
+.nav_link:hover{
+  color: var(--title-color);
+}
+
+.nav__icon{
+  font-size: 1.2rem;
+  margin-bottom: var(--mb-1);
+}
+
+/* Show menu */
+
+.show-menu{
+  bottom: var(--header-height);
+}
+
+/* Active menu link */
+
+.active-link{
+  color: var(--title-color);
+}
+
+/*========== HOME ==========*/
+
+.home{
+  position: relative;
+}
+
+.home__container{
+  gap: 3rem;
+}
+
+.home__data{
+  gap: .5rem;
+  text-align: center;
+}
+
+.home__img{
+  width: 160px;
+  height: 160px;
+  border-radius: 2em;
+  border: 3px solid var(--text-color-light);
+  justify-self: center;
+  margin-bottom: var(--mb-1);
+}
+
+.home__title{
+
+font-size: var(--h1-font-size);
+  
+}
+
+.home__profession{
+  font-size: var(--normal-font-size);
+  margin-bottom: var(--mb-1);
+}
+
+.home__address{
+  gap: 1rem;
+}
+
+.home__information{
+  display: flex;
+  align-items: center;
+  font-size: var(--small-font-size);
+}
+
+.home__icon{
+  font-size: 1.2rem;
+  margin-right: .25rem;
+}
+
+.home__button-movil{
+  display: inline-block;
+  border: 2px solid var(--text-color);
+  color: var(--title-color);
+  padding: 1rem 2rem;
+  border-radius: .25rem;
+  transition: .3s;
+  font-weight: var(--font-medium);
+  margin-top: var(--mb-3);
+}
+
+.home__button-movil:hover{
+  background-color: var(--text-color);
+  color: var(--container-color);
+}
+
+/* Scroll top */
+
+.scrolltop{
+  position: fixed;
+  right: 1rem;
+  bottom: -20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .3rem;
+  background-color: var(--container-color-alt);
+  border-radius: .4rem;
+  z-index: var(--z-tooltip);
+  transition: .4s;
+}
+
+.scrolltop__icon{
+  font-size: 1.2rem;
+  color: var(--text-color);
+}
+
+.show-scroll{
+  visibility: visible;
+  bottom: 5rem;
+}
+
+/*========== MEDIA QUERIES ==========*/
+/* For small devices, menu two columns */
+@media screen and (max-width: 320px) {
+  .nav__list{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem .5rem;
+  }
+}
+
+
+/* PAGE SECTION */
+
+.page {
+  background-color: var(--container-color-alt);
+  height: 97vh;
+  max-width: 100vh;
+  min-width: auto;
+  margin-top: 10px;
+  position: relative;
+}
+
+.button {
+  position: relative;
+  margin: 10px;
+  padding: 2vh 4vh;
+  background: linear-gradient(to left, #FFC312, #EE5A24, #FFC312);
+  display: inline-block;
+  border: 0px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  cursor: pointer;
+  background-size: 200%;
+  transition: all 0.6s ease;
+}
+
+/* CHART SECTION */
+.chart {
+  max-height: 100%;
+  max-width: 100%;
+  transition: ease 1s;
+}
+
+.chart-container {
+  position: absolute;
+  background-color: var(--chart-color);
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
+  height: 90%;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.chart-precontainer {
+  position: relative;
+  width: 100%;
+  height: 50%;
+}
+
+.title__chart {
+  position: absolue;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--title-color);
+  
+}
+
+
+/* Suwak section */
+
+.suwak_container {
+  position: relative;
+  min-width: 100%;
+  min-height: 4%;
+  max-height: 5vh;
+}
+
+.title__suwak {
+  position: relative;
+  margin-left: 10%;
+  color: var(--title-color);
+}
+
+.suwak,.enabled{
+  position: absolute;
+  width:  90%;
+  height: 100%;
+  outline: none;
+  border-radius: 2%;
+  margin-left: 5%;
+  cursor: pointer;
+  transition: ease-in-out .5s;
+  fill: #fff;
+  stroke: #000;
+}
+
+.suwak,.disabled{
+  position: absolute;
+  width:  90%;
+  height: 100%;
+  outline: none;
+  border-radius: 2%;
+  margin-left: 5%;
+  cursor: pointer;
+  transition: ease-in-out .5s;
+}
+
+.suwak:hover {
+  width: 92%;
+  margin-left: 4%;
+}
+
+.span{
+  
+  display: inline-block;
+  text-align: center;
+  margin: 20px 0;
+  background-color: #bfbfbf;
+  color: #ffffff;
+  padding: 10px 30px;
+  
+}
+
+/* RGB CIRCLE */
+
+#klocekRGB{
+  
+  display: block;
+  border-radius: 100%;
+  padding: 10vh;
+  background-color: #f2f2f2;
+  margin-left: 10%;
+  width: 10vh;
+  height: 10vh;
+  
+}
+
+#output{
+  text-align: center;
+  color: var(--text-color);
+  font-size: var(--h1-font-size);
+  margin-left: 5%;
+  
+}
+
+.select_Value{   
+  
+  width: 48px;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  background: #ffffff;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 45px;
+  font-size: 20px;
+}
+
+#zegar {
+  font-size: var(--font-medium);
+  color: var(--title-color);
+}

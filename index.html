@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--========== BOX ICONS ==========-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+        <!--========== CSS ==========-->
+        <link rel="stylesheet" href="style.css">
+        <!--========== SCRIPTS ======-->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css"/> <!-- 'classic' theme -->
+    </head>
+    
+    <body>
+        <header class="l-header" id="header">
+            <nav class="nav bd-container">
+                <a href="#" class="nav_logo">ESP8266 Smart Desk</a>
+                <div id="zegar"></div>
+                
+                <div class="nav_menu" id="nav-menu">
+                    <ul class="nav_list">
+                        
+                        <li class="nav_item">
+                            <a href="#Dash Board" class="nav_link">
+                                <i class="bx bx-home nav__icon"></i> Dash Board
+                            </a>
+                        </li>
+                        
+                        <li class="nav_item">
+                            <a href="#Charts" class="nav_link">
+                                <i class="bx bx-user nav__icon"></i> Charts
+                            </a>
+                        </li>
+                        <li class="nav_item">
+                            <a href="#Upload" class="nav_link">
+                                <i class="bx bx-book nav__icon"></i> Upload files
+                            </a>
+                        </li>
+                        <li class="nav_item">
+                            <a href="#1" class="nav_link">
+                                <i class="bx bx-book nav__icon"></i> 1
+                            </a>
+                        </li>
+                        <li class="nav_item">
+                            <a href="#2" class="nav_link">
+                                <i class="bx bx-book nav__icon"></i> 2
+                            </a>
+                        </li>
+                        <li class="nav_item">
+                            <a href="#Support" class="nav_link">
+                                <i class="bx bx-book nav__icon"></i> Support
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="nav_toggle" id="nav-toggle">
+                    <i class="bx bx-grid-alt"></i>
+                </div>
+            </nav>
+        </header>
+        
+        <main class="l-main bd-container">
+            <!-- Theme change button-->
+            <i class="bx bx-moon change-theme" title="theme-button" id="theme-button"></i>
+            <!-- Button to generate and download the pdf. Available for desktop. -->
+            
+            <section class="home" id="Dash Board">
+                
+                <div class="page">
+
+
+                    <button id="rainbow" class="button" onclick="rainbowEffect();">Rainbow</button>
+                    <button id="przycisPIR" class="button"  onclick="buttonPIR();">PIR</button>
+
+                    <button id="przycisK1" class="button"  onclick="buttonK1();">K1</button>
+                    <button id="przycisK2" class="button"  onclick="buttonK2();">K2</button>
+                    <button id="przycisK3" class="button"  onclick="buttonK3();">K3</button>
+                    <button id="przycisK4" class="button"  onclick="buttonK4();">K4</button>
+
+
+
+
+
+                   
+                        <!--==========  <div><input type="range" min = "0" max = "255" value = "0" class ="suwak"></div> ==========--> 
+                        
+                    <h1 class="title__suwak"> RED</h1>
+                    <div class="suwak_container"><input type="range" min = "0" max = "1023" value = "0" id ="r" step="1" class="suwak" oninput="sendRGB()"></div>
+                    <!--==========       <div><input type="range" min = "0" max = "255" value = "0" class ="suwak"></div> ==========--> 
+                    <h1 class="title__suwak"> GREEN</h1>
+                    <div class="suwak_container"><input type="range" min = "0" max = "1023" value = "0" id ="g" step="1" class="suwak" oninput="sendRGB()"></div>
+                    <!--==========       <div><input type="range" min = "0" max = "255" value = "0" class ="suwak"></div> ==========--> 
+                    <h1 class="title__suwak"> BLUE</h1>
+                    <div class="suwak_container"><input type="range" min = "0" max = "1023" value = "0" id ="b" step="1" class="suwak" oninput="sendRGB()"></div>
+                    <div id = "klocekRGB"></div>
+                    <span id = "output"> rgb(0,0,0)</span>
+                    
+                    
+                </div>
+                
+            </section>
+            
+            <section class="home" id="Charts">
+                <div class="page">
+                    <div class="chart-precontainer">
+                        <h1 class="title__chart">Wykres temperatury</h1>
+                        <div class="chart-container">
+                            <canvas id="myChart" class="chart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-precontainer">
+                        <h1 class="title__chart">Wykres Wilgotności</h1>
+                        <div class="chart-container">
+                            <canvas id="myChartH" class="chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="home" id="Upload">
+                <div class="page">
+                    <p style="text-align: left">Use this page to upload new files to the ESP8266.<br/>You can use compressed (deflated) files (files with a .gz extension) to save space and bandwidth.</p>
+                            <form method="post" enctype="multipart/form-data">
+                                <input type="file" name="Choose file" accept=".gz,.html,.ico,.js,.css">
+                                <input class="button" type="submit" value="Upload" name="submit">
+                            </form>
+                </div>
+            </section>
+            
+            <section class="home" id="1">
+                
+
+  
+                <div class="page"></div>
+            </section>
+            
+            <section class="home" id="2">
+                <div class="page"></div>
+            </section>
+            
+            <section class="home" id="Support">
+                <div class="page"></div>
+            </section>
+        </main>
+        
+        <script src="/WebSocket.js" type="text/javascript"></script>
+        <script src="chart.js" type="text/javascript"></script>
+        <script src="main.js" type="text/javascript"></script>
+        <script src="zegar.js" type="text/javascript"></script>
+        <script src="colors.js" type="text/javascript"></script>
+    </body>
+    </html>
