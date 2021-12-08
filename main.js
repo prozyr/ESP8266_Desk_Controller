@@ -1,3 +1,11 @@
+/**
+ * @ Author: Maciej Żyrek, Maciej Węcki
+ * @ Create Time: 04-11-2021 21:26:05
+ * @ Modified by: Maciej Żyrek
+ * @ Modified time: 19-11-2021 14:11:32
+ * @ Description: AiR 2021/2022, grupa: 7
+ */
+
 /*==================== SHOW MENU ====================*/
 
 const showMenu = (toggleId, navId) =>{

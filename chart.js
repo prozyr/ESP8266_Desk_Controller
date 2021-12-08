@@ -1,3 +1,11 @@
+/**
+ * @ Author: Maciej Żyrek, Maciej Węcki
+ * @ Create Time: 04-11-2021 21:26:05
+ * @ Modified by: Maciej Żyrek
+ * @ Modified time: 19-11-2021 14:10:14
+ * @ Description: AiR 2021/2022, grupa: 7
+ */
+
 /*!
  * Chart.js v3.4.1
  * https://www.chartjs.org
@@ -22,7 +30,7 @@ async function getData() {
     const table = data.split('\n').slice(2);
     table.forEach(row => {
         const columns = row.split(',')
-        console.log(columns);
+        // console.log(columns);
         const time = odliczanie1(columns[0]*1000);
         xs.push(time);
         const temp = columns[1];
@@ -35,7 +43,7 @@ async function getData() {
 
 async function cahrtIt1(){
     const data = await getData();
-    console.log(data);
+    // console.log(data);
     const myChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -44,50 +52,42 @@ async function cahrtIt1(){
                 label: 'Temperatura',
                 data: data.ysT,
                 fill: false,
-                backgroundColor: [
-                    'rgba(0,0, 0)'
-                ],
-                borderColor: [
-                    'rgba(0, 0, 0)',
-                ],
-                borderWidth: 1,
                 scaleFontColor: "#FFFFFF"
-                ,
-            //    Fontcolor: [
-              //      'rgba(255, 255, 255)',
-              //  ],
-             //   options:{
-               //     scales:{
-                 //       x:{
-                   //         type: 'time',
-                     //       time: {
-                               // unit: 'second' // format danych w sekundach NIE DZIAŁA //
-                       //      displayFormats:
-                         //    {
-                           //     quarter: 'MMM YYYY' // format daty NIE DZIAŁA
-                          //   }
-                               
-                     //   }
-                     //   }
-                  //  }
-              //  }
-                
             }]
         },
         options: {
 
+            // TODO: WYKRES NA CAŁEGO DIVA
+            maintainAspectRatio: false,
+
             elements: {
                 line: {
+                    borderColor: 'Black',
+                    backgroundColor: 'Black',
+                    borderWidth: 1,
                     lineTension: 0.2
                 },
                 point:{
-                    radius: 1.5
+                    fill: false,
+                    borderColor: 'Blue',
+                    borderWidth: .5,
+                    hitRadius: 20,
+                    radius: 1,
+                    pointStyle: 'circle',
+                    hoverRadius: 20,
+                    hoverBorderWidth: 10
                 }
             },
             scales: {
                 x: {
                     ticks: {
-                        color: 'red'
+                        color: 'red',
+                        callback: function(value){
+                            const valueLegend = this.getLabelForValue(value);
+                            const valueLegendRep = valueLegend.replaceAll(':',':');
+                            const valueLegendTruc = valueLegendRep.substr(11,5);
+                            return valueLegendTruc;
+                        }
                     },
                     grid: {
                         color: 'gray'
@@ -100,7 +100,7 @@ async function cahrtIt1(){
                     ticks: {
                         // Include a dollar sign in the ticks
                         callback: function(value, index, values) {
-                            return value + '°C';
+                            return value + "°C";
                         },
                         color: 'red'
                     },
@@ -124,7 +124,7 @@ async function cahrtIt1(){
 
 async function cahrtIt2(){
     const data = await getData();
-    console.log(data);
+    // console.log(data);
     const myChart = new Chart(rtx, {
         type: 'line',
         data: {
@@ -132,50 +132,50 @@ async function cahrtIt2(){
             datasets: [{
                 label: 'Wilgotność',
                 data: data.ysH,
-                fill: false,
-                backgroundColor: [
-                    'rgba(0, 0, 0)'
-                ],
-                borderColor: [
-                    'rgba(0, 0, 0)',
-                ],
-                borderWidth: 1,
+                // backgroundColor: [
+                    //     'rgba(0, 0, 0)'
+                    // ],
+                    // borderColor: [
+                        //     'rgba(0, 0, 0)',
+                        // ],
+                        fill: false,
                 scaleFontColor: "#FFFFFF"
             }]
             ,
-          //  Fontcolor: [
-            //    'rgba(255, 255, 255)',
-           // ],
-       //  options:{
-           //     scales:{
-             //       x:{
-               //         type: 'time',
-                 //       time: {
-                   //         unit: 'seconds'
-                      //   displayFormats:
-                       // {
-                        //    quarter: 'MMM YYYY'
-                        // }
-                           
-           //             }
-            //        }
-            //    }
-         //  }
         },
         options: {
 
+            // TODO: WYKRES NA CAŁEGO DIVA
+            maintainAspectRatio: false,
+
             elements: {
                 line: {
+                    borderColor: 'Black',
+                    backgroundColor: 'Black',
+                    borderWidth: 1,
                     lineTension: 0.2
                 },
                 point:{
-                    radius: 1.5
+                    fill: false,
+                    borderColor: 'Blue',
+                    borderWidth: .5,
+                    hitRadius: 20,
+                    radius: 1,
+                    pointStyle: 'circle',
+                    hoverRadius: 20,
+                    hoverBorderWidth: 10
                 }
             },
             scales: {
                 x: {
                     ticks: {
-                        color: 'red'
+                        color: 'red',
+                        callback: function(value){
+                            const valueLegend = this.getLabelForValue(value);
+                            const valueLegendRep = valueLegend.replaceAll(':',':');
+                            const valueLegendTruc = valueLegendRep.substr(11,5);
+                            return valueLegendTruc;
+                        }
                     },
                     grid: {
                         color: 'gray'
@@ -212,7 +212,7 @@ async function cahrtIt2(){
 
 function odliczanie1(dzis) {
 
-    console.log(dzis);
+    // console.log(dzis);
     var dzisiaj = new Date(dzis);
 
     var dzien = dzisiaj.getDate();
@@ -229,7 +229,6 @@ function odliczanie1(dzis) {
     if(dzien < 10) dzien = "0" + dzien;
     if(miesiac < 10) miesiac = "0" + miesiac;
 
-    console.log(dzien+'/'+miesiac+'/'+rok+' '+godzina+':'+minuta+':'+sekunda);
-
+    // console.log(dzien+'/'+miesiac+'/'+rok+' '+godzina+':'+minuta+':'+sekunda);
     return dzien+'/'+miesiac+'/'+rok+' '+godzina+':'+minuta+':'+sekunda;
 }

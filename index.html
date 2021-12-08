@@ -1,6 +1,19 @@
+<!--
+ * @ Author: Maciej Żyrek, Maciej Węcki
+ * @ Create Time: 04-11-2021 21:26:05
+ * @ Modified by: Maciej Żyrek
+ * @ Modified time: 19-11-2021 14:10:16
+ * @ Description: AiR 2021/2022, grupa: 7
+ -->
+
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8"> <!-- kodowanie znaków polskich -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- sposób wyświetlania na urządzeniach mob-->
+        <title>SMART DESK</title> <!-- tytuł stron min w wynikach wyszukiwania-->
+        <link rel="icon" sizes="180x180" href="apple-touch-icon-180x180.png"> <!-- ikona strony -->
+
         <!--========== BOX ICONS ==========-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
         <!--========== CSS ==========-->
@@ -10,22 +23,22 @@
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css"/> <!-- 'classic' theme -->
     </head>
-    
+
     <body>
         <header class="l-header" id="header">
             <nav class="nav bd-container">
                 <a href="#" class="nav_logo">ESP8266 Smart Desk</a>
                 <div id="zegar"></div>
-                
+
                 <div class="nav_menu" id="nav-menu">
                     <ul class="nav_list">
-                        
+
                         <li class="nav_item">
-                            <a href="#Dash Board" class="nav_link">
+                            <a href="#DashBoard" class="nav_link">
                                 <i class="bx bx-home nav__icon"></i> Dash Board
                             </a>
                         </li>
-                        
+
                         <li class="nav_item">
                             <a href="#Charts" class="nav_link">
                                 <i class="bx bx-user nav__icon"></i> Charts
@@ -37,12 +50,12 @@
                             </a>
                         </li>
                         <li class="nav_item">
-                            <a href="#1" class="nav_link">
+                            <a href="#W" class="nav_link">
                                 <i class="bx bx-book nav__icon"></i> 1
                             </a>
                         </li>
                         <li class="nav_item">
-                            <a href="#2" class="nav_link">
+                            <a href="#Z" class="nav_link">
                                 <i class="bx bx-book nav__icon"></i> 2
                             </a>
                         </li>
@@ -58,48 +71,48 @@
                 </div>
             </nav>
         </header>
-        
+
         <main class="l-main bd-container">
             <!-- Theme change button-->
             <i class="bx bx-moon change-theme" title="theme-button" id="theme-button"></i>
             <!-- Button to generate and download the pdf. Available for desktop. -->
-            
-            <section class="home" id="Dash Board">
-                
+
+            <section class="home" id="DashBoard">
+
                 <div class="page">
 
 
                     <button id="rainbow" class="button" onclick="rainbowEffect();">Rainbow</button>
                     <button id="przycisPIR" class="button"  onclick="buttonPIR();">PIR</button>
 
-                    <button id="przycisK1" class="button"  onclick="buttonK1();">K1</button>
-                    <button id="przycisK2" class="button"  onclick="buttonK2();">K2</button>
-                    <button id="przycisK3" class="button"  onclick="buttonK3();">K3</button>
-                    <button id="przycisK4" class="button"  onclick="buttonK4();">K4</button>
+                    <button id="przycisK1" class="button"  onclick="buttonK1();">Relay 1</button>
+                    <button id="przycisK2" class="button"  onclick="buttonK2();">Relay 2</button>
+                    <button id="przycisK3" class="button"  onclick="buttonK3();">Relay 3</button>
+                    <button id="przycisK4" class="button"  onclick="buttonK4();">Relay 4</button>
 
 
 
 
 
-                   
-                        <!--==========  <div><input type="range" min = "0" max = "255" value = "0" class ="suwak"></div> ==========--> 
-                        
+
+                        <!--==========  <div><input type="range" min = "0" max = "255" value = "0" class ="suwak"></div> ==========-->
+
                     <h1 class="title__suwak"> RED</h1>
-                    <div class="suwak_container"><input type="range" min = "0" max = "1023" value = "0" id ="r" step="1" class="suwak" oninput="sendRGB()"></div>
-                    <!--==========       <div><input type="range" min = "0" max = "255" value = "0" class ="suwak"></div> ==========--> 
+                    <div class="suwak_container"><input type="range" min = "0" max = "255" value = "0" id ="r" step="1" class="suwak" oninput="sendRGB()"></div>
+                    <!--==========       <div><input type="range" min = "0" max = "255" value = "0" class ="suwak"></div> ==========-->
                     <h1 class="title__suwak"> GREEN</h1>
-                    <div class="suwak_container"><input type="range" min = "0" max = "1023" value = "0" id ="g" step="1" class="suwak" oninput="sendRGB()"></div>
-                    <!--==========       <div><input type="range" min = "0" max = "255" value = "0" class ="suwak"></div> ==========--> 
+                    <div class="suwak_container"><input type="range" min = "0" max = "255" value = "0" id ="g" step="1" class="suwak" oninput="sendRGB()"></div>
+                    <!--==========       <div><input type="range" min = "0" max = "255" value = "0" class ="suwak"></div> ==========-->
                     <h1 class="title__suwak"> BLUE</h1>
-                    <div class="suwak_container"><input type="range" min = "0" max = "1023" value = "0" id ="b" step="1" class="suwak" oninput="sendRGB()"></div>
+                    <div class="suwak_container"><input type="range" min = "0" max = "255" value = "0" id ="b" step="1" class="suwak" oninput="sendRGB()"></div>
                     <div id = "klocekRGB"></div>
-                    <span id = "output"> rgb(0,0,0)</span>
-                    
-                    
+                    <span id = "output">rgb(0,0,0)</span>
+
+
                 </div>
-                
+
             </section>
-            
+
             <section class="home" id="Charts">
                 <div class="page">
                     <div class="chart-precontainer">
@@ -116,7 +129,7 @@
                     </div>
                 </div>
             </section>
-            
+
             <section class="home" id="Upload">
                 <div class="page">
                     <p style="text-align: left">Use this page to upload new files to the ESP8266.<br/>You can use compressed (deflated) files (files with a .gz extension) to save space and bandwidth.</p>
@@ -126,27 +139,34 @@
                             </form>
                 </div>
             </section>
-            
-            <section class="home" id="1">
-                
 
-  
+            <section class="home" id="W">
+                <div class="page">
+                    <div style="overflow-y:scroll;overflow-x:hidden;height:100% !important;width:100%;min-width:148px;position:relative;left:3px;">
+                        <div id="csv"></div>
+                        </div>
+                </div>
+
+            </section>
+
+            <section class="home" id="Z">
                 <div class="page"></div>
             </section>
-            
-            <section class="home" id="2">
-                <div class="page"></div>
-            </section>
-            
+
             <section class="home" id="Support">
                 <div class="page"></div>
             </section>
         </main>
-        
+
+        <a href="#" class="scrolltop" id="scroll-top">
+            <i class="bx bx-up-arrow-alt scrolltop__icon"></i>
+        </a>
+
+        <script src="tableData.js" type="text/javascript"></script>
         <script src="WebSocket.js" type="text/javascript"></script>
         <script src="chart.js" type="text/javascript"></script>
         <script src="main.js" type="text/javascript"></script>
         <script src="zegar.js" type="text/javascript"></script>
         <script src="colors.js" type="text/javascript"></script>
     </body>
-    </html>
+</html>

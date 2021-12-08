@@ -1,3 +1,11 @@
+/**
+ * @ Author: Maciej Żyrek, Maciej Węcki
+ * @ Create Time: 04-11-2021 21:26:05
+ * @ Modified by: Maciej Żyrek
+ * @ Modified time: 19-11-2021 14:10:15
+ * @ Description: AiR 2021/2022, grupa: 7
+ */
+
 /*===== GOOGLE FONTS =====*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
@@ -252,7 +260,7 @@ img {
 .home__title{
 
 font-size: var(--h1-font-size);
-  
+
 }
 
 .home__profession{
@@ -354,9 +362,8 @@ font-size: var(--h1-font-size);
 
 /* CHART SECTION */
 .chart {
-  max-height: 100%;
-  max-width: 100%;
-  transition: ease 1s;
+  width: 100%;
+  transition: ease .1s;
 }
 
 .chart-container {
@@ -382,7 +389,7 @@ font-size: var(--h1-font-size);
   margin-left: auto;
   margin-right: auto;
   color: var(--title-color);
-  
+
 }
 
 
@@ -431,20 +438,20 @@ font-size: var(--h1-font-size);
 }
 
 .span{
-  
+
   display: inline-block;
   text-align: center;
   margin: 20px 0;
   background-color: #bfbfbf;
   color: #ffffff;
   padding: 10px 30px;
-  
+
 }
 
 /* RGB CIRCLE */
 
 #klocekRGB{
-  
+
   display: block;
   border-radius: 100%;
   padding: 10vh;
@@ -452,7 +459,7 @@ font-size: var(--h1-font-size);
   margin-left: 10%;
   width: 10vh;
   height: 10vh;
-  
+
 }
 
 #output{
@@ -460,11 +467,11 @@ font-size: var(--h1-font-size);
   color: var(--text-color);
   font-size: var(--h1-font-size);
   margin-left: 5%;
-  
+
 }
 
-.select_Value{   
-  
+.select_Value{
+
   width: 48px;
   height: 40px;
   position: absolute;
@@ -479,4 +486,26 @@ font-size: var(--h1-font-size);
 #zegar {
   font-size: var(--font-medium);
   color: var(--title-color);
+}
+
+table {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+
+}
+
+tr:nth-child(odd){
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+tr:nth-child(even){
+  background-color: rgba(109, 109, 109, 0.5);
+}
+
+td {
+  padding: 4px 16px;
+  color: var(--text-color);
+  font-size: var(--h3-font-size);
 }

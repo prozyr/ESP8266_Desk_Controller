@@ -1,11 +1,10 @@
 /**
- * @ Author: Maciej Żyrek
- * @ Create Time: 09.06.2021 12:45:06
+ * @ Author: Maciej Żyrek, Maciej Węcki
+ * @ Create Time: 04-11-2021 21:26:05
  * @ Modified by: Maciej Żyrek
- * @ Modified time: 04-11-2021 19:16:42
- * @ Description:
+ * @ Modified time: 19-11-2021 14:10:50
+ * @ Description: AiR 2021/2022, grupa: 7
  */
-
 
 var pirButtonEnable = false;
 var rainbowEnable = false;
@@ -15,30 +14,34 @@ var connection = new WebSocket('ws://' + location.hostname + ':81/', ['arduino']
 connection.onopen = function () {
     connection.send('Connect ' + new Date());
 };
+
 connection.onerror = function (error) {
     console.log('WebSocket Error ', error);
 };
+
 connection.onmessage = function (e) {
     console.log('Server: ', e.data);
 
     var tmp = e.data.split(',');
-    document.getElementById('Dt').innerHTML = tmp[0];
 
-    document.getElementById('Dt').style.color = tmp[0] <= 0 ? 'red' : 'green';
-
-    document.getElementById('Dh').innerHTML = tmp[1];
-
-    document.getElementById('D').style.color = tmp[0] <= 0 ? 'red' : 'green';
+    if (tmp[0] == "!") { // When message start with "!", its data of state PWM modulation of RGB light, 0 - 255. Data format !,Red,Green,Blue
+        document.getElementById("r").value = tmp[1];
+        document.getElementById("g").value = tmp[2];
+        document.getElementById("b").value = tmp[3];
+        document.getElementById("klocekRGB").style.backgroundColor = 'rgb('+ tmp[1] + ',' + tmp[2] + ',' + tmp[3] + ')';
+        document.getElementById("output").innerHTML = 'rgb('+ tmp[1] + ',' + tmp[2] + ',' + tmp[3] + ')';
+    }
 };
+
 connection.onclose = function(){
     console.log('WebSocket connection closed');
 };
 
 function sendRGB() {
     colors();
-    var r = document.getElementById('r').value**2/1023;
-    var g = document.getElementById('g').value**2/1023;
-    var b = document.getElementById('b').value**2/1023;
+    var r = document.getElementById('r').value;
+    var g = document.getElementById('g').value;
+    var b = document.getElementById('b').value;
 
     var rgb = r << 20 | g << 10 | b;
     var rgbstr = '#'+ rgb.toString(16);
@@ -98,44 +101,3 @@ function buttonDel(){
 function reset(){
     connection.send("r");
 }
-
-// TODO: zakomentowane, wykresy są wywoływane przez przyciski na stronie ... do poprawy
-/*
-    setInterval(function ( ) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("przycisk2").innerHTML = this.responseText;
-        }
-    };
-    xhttp.open("GET", "temperature", true);
-    xhttp.send();
-    }, 10000 ) ;
-
-setInterval(function ( ) {
-    var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("przycisk1").innerHTML = this.responseText;
-    }
-  };
-  xhttp.open("GET", "humidity", true);
-  xhttp.send();
-  }, 10000 ) ;
-  */
-
-  window.onload = function(){
-    var button = document.getElementById('przycisk1');
-    var button1 = document.getElementById('przycisk2');
-    button.click();
-    button1.click();
-
-    connection.send("X");
-
-    setInterval(function(){
-
-        connection.send("X");
-        button.click();
-        button1.click();
-    },60000);  // this will make it click again every 1000 miliseconds
-};
