@@ -289,10 +289,10 @@ void startWiFi() { // Start a Wi-Fi access point, and try to connect to some giv
   WiFi.softAP(ssid, password);             // Start the access point
   Serial << "Access Point \"" << ssid << "\" started\r\n" << endl;
 
-  wifiMulti.addAP("www_jkns_pl_191b", "191b191b");   // add Wi-Fi networks you want to connect to
-  wifiMulti.addAP("R2D2", "plonkatochuj");
+  wifiMulti.addAP("ssid_from_AP_1", "your_password_for_AP_1");   // add Wi-Fi networks you want to connect to
+  wifiMulti.addAP("ssid_from_AP_2", "your_password_for_AP_2");
   wifiMulti.addAP("ssid_from_AP_3", "your_password_for_AP_3");
-
+  
   Serial << "Connecting" << endl;
   while (wifiMulti.run() != WL_CONNECTED && WiFi.softAPgetStationNum() < 1) {  // Wait for the Wi-Fi to connect
     delay(250);
